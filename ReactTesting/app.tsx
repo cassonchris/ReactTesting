@@ -1,14 +1,34 @@
-﻿declare var require: any
+﻿import React = require("react");
+import ReactDOM = require("react-dom");
+const { useState } = React;
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-export class Hello extends React.Component {
-    render() {
-        return (
-            <h1>Welcome to React!!</h1>
-        );
-    }
+const Button = () => {
+    const [counter, setCounter] = useState(0);
+    const handleClick = () => setCounter(counter + 1);
+    return (
+        <button onClick={handleClick}>
+            {counter}
+        </button>
+    );
 }
 
-ReactDOM.render(<Hello />, document.getElementById('root'));
+const ValidateTicketButton = () => {
+    const [submit, setSubmit] = useState("Not yet");
+    const handleClick = () => {
+        fetch("http://localhost:7071/api/ValidateTicket/eventHash/ticket")
+            .then(() => setSubmit("Yahuh"));
+    }
+    return (
+        <button onClick={handleClick}>
+            Ticket Validated? {submit}
+        </button>
+    );
+}
+
+ReactDOM.render(
+    <div>
+        <Button />
+        <ValidateTicketButton />
+    </div>,
+    document.getElementById("root")
+);
