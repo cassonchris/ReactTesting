@@ -1,0 +1,9 @@
+{
+  "name": "react-testing",
+  "version": "0.0.0",
+  "description": "ReactTesting",
+  "main": "server.js",
+  "author": {
+    "name": "Chris Casson"
+  }
+}
